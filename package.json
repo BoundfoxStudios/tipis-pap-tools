@@ -7,6 +7,7 @@
     "start:app": "tauri dev",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "prepare": "husky install",
     "tauri": "tauri",
     "semantic-release": "semantic-release",
     "test": "ng test"
@@ -36,15 +37,21 @@
     "@semantic-release/git": "~10.0.1",
     "@tauri-apps/cli": "~1.5.7",
     "@types/jasmine": "~5.1.0",
+    "husky": "~8.0.3",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "lint-staged": "~15.2.0",
     "prettier": "~3.1.0",
     "prettier-plugin-tailwindcss": "~0.5.8",
     "semantic-release": "~22.0.9",
     "typescript": "~5.2.2"
+  },
+  "lint-staged": {
+    "*.ts": "eslint --cache --fix",
+    "*.{ts,html,css,md}": "prettier --write"
   }
 }

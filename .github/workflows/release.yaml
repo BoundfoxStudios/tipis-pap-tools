@@ -1,0 +1,175 @@
+name: release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup node
+        uses: actions/setup-node@v3
+      - run: npm install
+      - name: run tests
+        run: npm test
+
+  create-release:
+    needs: run-tests
+    permissions:
+      contents: write
+    runs-on: ubuntu-20.04
+    outputs:
+      release-id: ${{ steps.create-release.outputs.result }}
+      version: ${{ steps.get-next-version.outputs.new-release-version }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm install
+      - run: npx semantic-release --dry-run
+        id: get-next-version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: get version
+        run: echo "PACKAGE_VERSION=${{ steps.get-next-version.outputs.new-release-version }}" >> $GITHUB_ENV
+      - name: get changelog
+        env:
+          NOTES: ${{ steps.get-next-version.outputs.new-release-notes }}
+        run: |
+          CHANGELOG=$(echo "$NOTES" | tail -n +3)
+
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          echo "$CHANGELOG" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+      - name: create release
+        id: create-release
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const { data } = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: `v${process.env.PACKAGE_VERSION}`,
+              name: `Kuwaka Wakati v${process.env.PACKAGE_VERSION}`,
+              body: `${process.env.CHANGELOG}`,
+              draft: true,
+              prerelease: false
+            })
+            return data.id
+
+  build-tauri:
+    needs: create-release
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [ macos-latest, ubuntu-20.04, windows-latest ]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: update package.json with current version
+        uses: jaywcjlove/github-action-package@main
+        with:
+          version: ${{ needs.create-release.outputs.version }}
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+      - name: install dependencies (ubuntu only)
+        if: matrix.platform == 'ubuntu-20.04'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.0-dev libappindicator3-dev librsvg2-dev patchelf
+      - name: install frontend dependencies
+        run: npm install
+      - uses: tauri-apps/tauri-action@v0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ENABLE_CODE_SIGNING: ${{ secrets.APPLE_CERTIFICATE_DATA }}
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE_DATA }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSPHRASE }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_TEAM_NAME }}
+          APPLE_ID: ${{ secrets.APPLE_NOTARIZATION_USERNAME }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_NOTARIZATION_PASSWORD }}
+          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          TAURI_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
+        with:
+          releaseId: ${{ needs.create-release.outputs.release-id }}
+
+  publish-release:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    runs-on: ubuntu-20.04
+    needs: [ create-release, build-tauri ]
+    steps:
+      - uses: actions/checkout@v3
+      - name: setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install frontend dependencies
+        run: npm install
+      - run: npx semantic-release
+        id: get-next-version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: publish release
+        id: publish-release
+        uses: actions/github-script@v6
+        env:
+          release_id: ${{ needs.create-release.outputs.release-id }}
+        with:
+          script: |
+            github.rest.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: process.env.release_id,
+              draft: false,
+              prerelease: false
+            })
+      - name: download latest.json for the updater
+        id: latest-json
+        uses: actions/github-script@v6
+        env:
+          release_id: ${{ needs.create-release.outputs.release-id }}
+        with:
+          result-encoding: string
+          script: |
+            const result = await github.rest.repos.getRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: process.env.release_id
+            });
+
+            const latestJson = result.data.assets.find(asset => asset.name === 'latest.json');
+
+            if (!latestJson) {
+              throw new Error('latest.json not found.');
+            }
+
+            const latestJsonContent = await github.request(latestJson.browser_download_url);
+            const textDecoder = new TextDecoder('utf-8');
+            return textDecoder.decode(latestJsonContent.data);
+      - name: Deploy update.json to Gist
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GIST_TOKEN }}
+          script: |
+            github.rest.gists.update({
+              gist_id: '3d4dc09c85b43f26db21d1a2590d2187',
+              files: {
+                'update.json': {
+                  content: `${{ steps.latest-json.outputs.result }}`
+                }
+              }
+            })

@@ -8,6 +8,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "tauri": "tauri",
+    "semantic-release": "semantic-release",
     "test": "ng test"
   },
   "private": true,
@@ -28,6 +29,9 @@
     "@angular-devkit/build-angular": "^17.0.5",
     "@angular/cli": "^17.0.5",
     "@angular/compiler-cli": "^17.0.0",
+    "@boundfoxstudios/semantic-release-export-data": "~1.1.0",
+    "@semantic-release/changelog": "github:semantic-release/changelog",
+    "@semantic-release/git": "~10.0.1",
     "@tauri-apps/cli": "~1.5.7",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
@@ -36,6 +40,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "semantic-release": "~22.0.9",
     "typescript": "~5.2.2"
   }
 }

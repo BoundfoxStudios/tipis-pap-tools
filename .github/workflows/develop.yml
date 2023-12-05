@@ -52,3 +52,21 @@ jobs:
           name: apps-${{ matrix.platform }}
           path: |
             src-tauri/target/debug/bundle/
+
+  deploy-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run build
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist/tipis-pap-tools/browser
+          user_name: "Boundfox Studios Publish Bot"
+          user_email: "info@boundfoxstudios.com"
+          commit_message: ":rocket: Deploy App"

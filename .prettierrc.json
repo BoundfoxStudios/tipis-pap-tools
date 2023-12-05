@@ -1,0 +1,27 @@
+{
+  "tabWidth": 4,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "useTabs": false,
+  "bracketSpacing": true,
+  "printWidth": 150,
+  "bracketSameLine": true,
+  "arrowParens": "avoid",
+  "overrides": [
+    {
+      "files": ["**/*.html"],
+      "options": {
+        "singleQuote": false,
+        "embeddedLanguageFormatting": "off"
+      }
+    },
+    {
+      "files": ["**/*.json", "**/*.yml", "**/*.md"],
+      "options": {
+        "tabWidth": 2
+      }
+    }
+  ],
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "pluginSearchDirs": []
+}

@@ -7,8 +7,8 @@
     "distDir": "../dist/tipis-pap-tools/browser"
   },
   "package": {
-    "productName": "tipis-pap-tools",
-    "version": "0.1.0"
+    "productName": "Tipis P&P Tools",
+    "version": "../package.json"
   },
   "tauri": {
     "updater": {
@@ -24,8 +24,17 @@
     },
     "bundle": {
       "active": true,
-      "category": "DeveloperTool",
-      "copyright": "",
+      "targets": [
+        "appimage",
+        "app",
+        "dmg",
+        "msi",
+        "deb",
+        "updater"
+      ],
+      "category": "Business",
+      "copyright": "Copyright Boundfox Studios",
+      "publisher": "Boundfox Studios",
       "deb": {
         "depends": []
       },
@@ -67,7 +76,8 @@
         "height": 600,
         "resizable": true,
         "title": "Tipis P&P Tools",
-        "width": 800
+        "width": 800,
+        "acceptFirstMouse": true
       }
     ]
   }

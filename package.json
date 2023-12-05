@@ -10,7 +10,8 @@
     "prepare": "husky install",
     "tauri": "tauri",
     "semantic-release": "semantic-release",
-    "test": "ng test"
+    "test": "ng test",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -28,6 +29,11 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.0.5",
+    "@angular-eslint/builder": "17.1.1",
+    "@angular-eslint/eslint-plugin": "17.1.1",
+    "@angular-eslint/eslint-plugin-template": "17.1.1",
+    "@angular-eslint/schematics": "17.1.1",
+    "@angular-eslint/template-parser": "17.1.1",
     "@angular/cli": "^17.0.5",
     "@angular/compiler-cli": "^17.0.0",
     "@boundfoxstudios/semantic-release-export-data": "~1.1.0",
@@ -37,6 +43,12 @@
     "@semantic-release/git": "~10.0.1",
     "@tauri-apps/cli": "~1.5.7",
     "@types/jasmine": "~5.1.0",
+    "@typescript-eslint/eslint-plugin": "6.13.1",
+    "@typescript-eslint/parser": "6.13.1",
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "~9.1.0",
+    "eslint-plugin-deprecation": "~2.0.0",
+    "eslint-plugin-prefer-arrow": "~1.2.3",
     "husky": "~8.0.3",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",

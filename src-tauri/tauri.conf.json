@@ -7,7 +7,7 @@
     "distDir": "../dist/tipis-pap-tools/browser"
   },
   "package": {
-    "productName": "Tipis P&P Tools",
+    "productName": "Tipis PAP Tools",
     "version": "../package.json"
   },
   "tauri": {

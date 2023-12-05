@@ -30,6 +30,8 @@
     "@angular/cli": "^17.0.5",
     "@angular/compiler-cli": "^17.0.0",
     "@boundfoxstudios/semantic-release-export-data": "~1.1.0",
+    "@commitlint/cli": "~18.4.3",
+    "@commitlint/config-angular": "~18.4.3",
     "@semantic-release/changelog": "github:semantic-release/changelog",
     "@semantic-release/git": "~10.0.1",
     "@tauri-apps/cli": "~1.5.7",

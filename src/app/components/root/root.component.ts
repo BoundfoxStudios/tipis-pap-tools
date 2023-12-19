@@ -11,5 +11,4 @@ import { HeaderComponent } from '../header/header.component';
     templateUrl: './root.component.html',
     styleUrl: './root.component.css',
 })
-export class RootComponent {
-}
+export class RootComponent {}

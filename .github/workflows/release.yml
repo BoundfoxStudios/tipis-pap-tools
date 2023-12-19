@@ -8,7 +8,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   run-tests:
@@ -82,6 +82,12 @@ jobs:
         uses: jaywcjlove/github-action-package@main
         with:
           version: ${{ needs.create-release.outputs.version }}
+      - name: write version.json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: version.json
+          json: '{ "version": "${{ needs.create-release.outputs.version }}" }'
+          dir: src/assets
       - name: setup node
         uses: actions/setup-node@v3
         with:

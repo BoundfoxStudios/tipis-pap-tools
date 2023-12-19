@@ -26,6 +26,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+      - name: write version.json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: version.json
+          json: '{ "version": "0.0.0-dev.${{ github.run_number }}", "sha": "${{ github.sha }}" }'
+          dir: src/assets
       - name: install Rust stable
         uses: dtolnay/rust-toolchain@stable
       - name: install dependencies (ubuntu only)

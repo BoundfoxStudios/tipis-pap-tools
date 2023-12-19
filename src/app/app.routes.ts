@@ -4,10 +4,15 @@ export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/dice',
+        redirectTo: '/tools/dice',
     },
     {
-        path: 'dice',
-        loadComponent: () => import('./components/dice/dice.component'),
+        path: 'tools',
+        children: [
+            {
+                path: 'dice',
+                loadComponent: () => import('./components/dice/dice.component'),
+            },
+        ],
     },
 ];

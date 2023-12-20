@@ -1,0 +1,5 @@
+:host-context(pap-sidebar-item-group) {
+    a {
+        @apply ml-4;
+    }
+}

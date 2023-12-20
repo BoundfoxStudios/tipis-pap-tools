@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
-import { faDiceD6, faHeart, faToolbox } from '@fortawesome/free-solid-svg-icons';
+import { faDashboard, faDiceD6, faDragon, faHeart, faTools } from '@fortawesome/free-solid-svg-icons';
 import { SidebarItemComponent } from './sidebar-item/sidebar-item.component';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { VersionService } from '../../services/version.service';
@@ -21,7 +21,9 @@ export class SidebarComponent {
     protected readonly faDiceD6 = faDiceD6;
     protected readonly faHeart = faHeart;
     protected readonly faGithub = faGithub;
+    protected readonly faDragon = faDragon;
+    protected readonly faDashboard = faDashboard;
+    protected readonly faTools = faTools;
     private readonly versionService = inject(VersionService);
     protected readonly versionSignal = toSignal(this.versionService.load());
-    protected readonly faToolbox = faToolbox;
 }

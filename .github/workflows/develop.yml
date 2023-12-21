@@ -64,7 +64,7 @@ jobs:
           path: |
             src-tauri/target/debug/bundle/
 
-  deploy-pages:
+  deploy-dev-site:
     runs-on: ubuntu-latest
     needs:
       - build-tauri
@@ -74,6 +74,12 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
+      - name: write version.json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: version.json
+          json: '{ "version": "0.0.0-dev.${{ github.run_number }}", "sha": "${{ github.sha }}" }'
+          dir: src/assets
       - run: npm run build -- --base-href=/tipis-pap-tools/
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

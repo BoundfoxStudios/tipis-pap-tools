@@ -5,7 +5,7 @@ export const routes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/tools/dice',
+        redirectTo: '/characters/1/dashboard',
     },
     {
         path: 'characters',
@@ -15,9 +15,19 @@ export const routes: Routes = [
                 loadComponent: () => import('./components/characters/create-character/create-character.component'),
             },
             {
-                path: 'dashboard',
-                loadComponent: () => import('./components/characters/character-dashboard/character-dashboard.component'),
-                canActivate: [hasCharactersGuard],
+                path: ':id',
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: '/characters/1/dashboard',
+                    },
+                    {
+                        path: 'dashboard',
+                        loadComponent: () => import('./components/characters/character-dashboard/character-dashboard.component'),
+                        canActivate: [hasCharactersGuard],
+                    },
+                ],
             },
         ],
     },

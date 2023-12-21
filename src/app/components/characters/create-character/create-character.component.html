@@ -1,1 +1,7 @@
-<p>create-character works!</p>
+<pap-h1>Neuen Charakter erstellen</pap-h1>
+
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <pap-text-input [control]="formGroup.controls['name']" label="Name" autoComplete="nickname" />
+
+    <pap-submit-button class="mt-4" [disabled]="formGroup.invalid">Charakter erstellen</pap-submit-button>
+</form>

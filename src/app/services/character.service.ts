@@ -11,4 +11,9 @@ export class CharacterService {
         const items = await this.characterTable.list();
         return items.length > 0;
     }
+
+    async createCharacter(name: string): Promise<number> {
+        const character = await this.characterTable.add(name);
+        return character.id;
+    }
 }

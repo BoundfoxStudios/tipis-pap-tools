@@ -6,6 +6,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { DATABASE_TABLE, databaseInitializerFactory, databaseInitializerFactoryDeps } from './services/database.service';
 import { CharacterTable } from './services/tables/character.table';
+import { characterStoreInitializerFactory, characterStoreInitializerFactoryDeps } from './stores/character.store';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -23,6 +24,12 @@ export const appConfig: ApplicationConfig = {
             provide: APP_INITIALIZER,
             useFactory: databaseInitializerFactory,
             deps: databaseInitializerFactoryDeps,
+            multi: true,
+        },
+        {
+            provide: APP_INITIALIZER,
+            useFactory: characterStoreInitializerFactory,
+            deps: characterStoreInitializerFactoryDeps,
             multi: true,
         },
     ],

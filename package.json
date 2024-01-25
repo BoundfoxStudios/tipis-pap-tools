@@ -28,6 +28,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@ngrx/signals": "~17.1.0",
     "@tauri-apps/api": "~1.5.3",
     "dexie": "~3.2.4",
     "dexie-export-import": "~4.0.7",

@@ -1,11 +1,11 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { CharacterService } from '../services/character.service';
+import { CharacterStore } from '../stores/character.store';
 
-export const hasCharactersGuard: CanActivateFn = async () => {
+export const hasCharactersGuard: CanActivateFn = () => {
     const router = inject(Router);
-    const characterService = inject(CharacterService);
-    const hasCharacters = await characterService.hasCharacters();
+    const characterStore = inject(CharacterStore);
+    const hasCharacters = characterStore.count() > 0;
 
     return hasCharacters ? true : router.createUrlTree(['/characters/create']);
 };

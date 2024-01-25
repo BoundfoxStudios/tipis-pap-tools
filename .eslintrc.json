@@ -86,7 +86,11 @@
             "ignoreStatic": true
           }
         ],
-        "@typescript-eslint/explicit-function-return-type": "error",
+        "@typescript-eslint/explicit-function-return-type": [
+          "error", {
+            "allowFunctionsWithoutTypeParameters": true
+          }
+        ],
         "prefer-arrow/prefer-arrow-functions": [
           "error",
           {

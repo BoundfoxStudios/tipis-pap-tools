@@ -80,7 +80,7 @@ jobs:
           name: version.json
           json: '{ "version": "0.0.0-dev.${{ github.run_number }}", "sha": "${{ github.sha }}" }'
           dir: src/assets
-      - run: npm run build -- --base-href=/tipis-pap-tools/
+      - run: npm run build -- --base-href=https://boundfoxstudios.github.io/tipis-pap-tools/
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

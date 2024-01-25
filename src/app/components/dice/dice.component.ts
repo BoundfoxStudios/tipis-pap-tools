@@ -1,5 +1,4 @@
 import { AfterViewInit, Component } from '@angular/core';
-import { Location } from '@angular/common';
 import DiceBox from '@3d-dice/dice-box';
 import { FormsModule } from '@angular/forms';
 
@@ -16,11 +15,9 @@ export default class DiceComponent implements AfterViewInit {
 
     private diceBox!: DiceBox;
 
-    constructor(private readonly location: Location) {}
-
     async ngAfterViewInit(): Promise<void> {
         this.diceBox = new DiceBox('#dice-canvas', {
-            assetPath: this.location.prepareExternalUrl('assets/dice/'),
+            assetPath: '/assets/dice/',
             scale: 8,
         });
 

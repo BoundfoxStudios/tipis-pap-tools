@@ -1,1 +1,39 @@
-<p>character-dashboard works!</p>
+<pap-h1>{{ character().name }}</pap-h1>
+
+<pap-content-group class="w-1/2" label="Main Stats">
+    <pap-character-statistic
+        (incrementChange)="updateStrength(character(), $event)"
+        [allowEdit]="editModeStore.isEnabled()"
+        [value]="character().strength"
+        label="Stärke"></pap-character-statistic>
+    <pap-character-statistic
+        (incrementChange)="updateAgility(character(), $event)"
+        [allowEdit]="editModeStore.isEnabled()"
+        [value]="character().agility"
+        class="mt-2"
+        label="Beweglichkeit"></pap-character-statistic>
+    <pap-character-statistic
+        (incrementChange)="updateStamina(character(), $event)"
+        [allowEdit]="editModeStore.isEnabled()"
+        [value]="character().stamina"
+        class="mt-2"
+        label="Ausdauer"></pap-character-statistic>
+    <pap-character-statistic
+        (incrementChange)="updateMagic(character(), $event)"
+        [allowEdit]="editModeStore.isEnabled()"
+        [value]="character().magic"
+        class="mt-2"
+        label="Magie"></pap-character-statistic>
+    <pap-character-statistic
+        (incrementChange)="updateSpirit(character(), $event)"
+        [allowEdit]="editModeStore.isEnabled()"
+        [value]="character().spirit"
+        class="mt-2"
+        label="Geist"></pap-character-statistic>
+    <pap-character-statistic
+        (incrementChange)="updateIntelligence(character(), $event)"
+        [allowEdit]="editModeStore.isEnabled()"
+        [value]="character().intelligence"
+        class="mt-2"
+        label="Intelligenz"></pap-character-statistic>
+</pap-content-group>

@@ -19,8 +19,8 @@ export class CharacterTable implements DatabaseTable<CharacterEntity> {
         return this.entities.toArray();
     }
 
-    item(id: number): Promise<CharacterEntity | undefined> {
-        return this.entities.get(id);
+    async update(character: CharacterEntity) {
+        await this.entities.update(character.id, character);
     }
 
     async add(name: string): Promise<CharacterEntity> {
@@ -36,5 +36,9 @@ export class CharacterTable implements DatabaseTable<CharacterEntity> {
         });
         const character = await this.item(id);
         return character!;
+    }
+
+    private item(id: number): Promise<CharacterEntity | undefined> {
+        return this.entities.get(id);
     }
 }

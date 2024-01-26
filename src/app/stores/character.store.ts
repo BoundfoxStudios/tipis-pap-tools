@@ -1,5 +1,5 @@
 import { patchState, signalStore, withComputed, withMethods } from '@ngrx/signals';
-import { addEntity, setAllEntities, withEntities } from '@ngrx/signals/entities';
+import { addEntity, setAllEntities, updateEntity, withEntities } from '@ngrx/signals/entities';
 import { CharacterEntity } from '../models/character/character.entity';
 import { CharacterTable } from '../services/tables/character.table';
 import { computed, effect, inject, Injector } from '@angular/core';
@@ -22,6 +22,16 @@ export const CharacterStore = signalStore(
                 patchState(store, addEntity(newCharacter));
 
                 return newCharacter.id;
+            },
+            update: async (character: CharacterEntity) => {
+                await characterTable.update(character);
+                patchState(
+                    store,
+                    updateEntity({
+                        id: character.id,
+                        changes: character,
+                    }),
+                );
             },
         };
     }),

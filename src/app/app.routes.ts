@@ -36,7 +36,7 @@ export const routes: Routes = [
         children: [
             {
                 path: 'dice',
-                loadComponent: () => import('./components/dice/dice.component'),
+                loadComponent: () => import('./components/tools/dice/dice.component'),
             },
         ],
     },

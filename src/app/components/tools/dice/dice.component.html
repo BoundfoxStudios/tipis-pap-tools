@@ -1,0 +1,19 @@
+<pap-h1>Würfeln</pap-h1>
+
+<form class="mx-auto max-w-sm">
+    <div class="mb-5">
+        <label class="mb-2 block text-sm font-medium" for="dice">Definition</label>
+        <input
+            [(ngModel)]="dice"
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            id="dice"
+            name="dice"
+            placeholder="2d20"
+            required
+            type="text" />
+    </div>
+    <pap-submit-button (click)="roll()" [disabled]="!dice"> Würfeln! </pap-submit-button>
+
+    <div class="mt-4">Ergebnis: {{ result }}</div>
+</form>
+<canvas class="mt-4 w-full border" id="dice-canvas"></canvas>

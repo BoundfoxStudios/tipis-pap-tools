@@ -1,11 +1,13 @@
 import { AfterViewInit, Component } from '@angular/core';
 import DiceBox from '@3d-dice/dice-box';
 import { FormsModule } from '@angular/forms';
+import { SubmitButtonComponent } from '../../inputs/submit-button/submit-button.component';
+import { H1Component } from '../../headings/h1/h1.component';
 
 @Component({
     selector: 'pap-dice',
     standalone: true,
-    imports: [FormsModule],
+    imports: [FormsModule, SubmitButtonComponent, H1Component],
     templateUrl: './dice.component.html',
     styleUrl: './dice.component.css',
 })

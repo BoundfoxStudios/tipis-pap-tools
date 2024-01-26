@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { faBars, faDiceD20 } from '@fortawesome/free-solid-svg-icons';
+import { DarkLightModeComponent } from '../dark-light-mode/dark-light-mode.component';
 
 @Component({
     selector: 'pap-header',
     standalone: true,
-    imports: [FaIconComponent],
+    imports: [FaIconComponent, DarkLightModeComponent],
     templateUrl: './header.component.html',
     styleUrl: './header.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

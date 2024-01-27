@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import Dexie, { Table } from 'dexie';
 import 'dexie-export-import';
 import { CharacterEntity } from '../models/character/character.entity';
+import { SettingsEntity } from '../models/settings.entity';
 
 @Injectable({
     providedIn: 'root',
 })
 export class DatabaseService extends Dexie {
     readonly characters!: Table<CharacterEntity, number>;
+    readonly settings!: Table<SettingsEntity, number>;
 
     constructor() {
         super('tipis-pap-tools');
@@ -15,10 +17,13 @@ export class DatabaseService extends Dexie {
         this.version(1).stores({
             characters: '++id',
         });
+        this.version(2).stores({
+            settings: '++id',
+        });
     }
 
     initialize(): void {
-        // for later
+        // For later
     }
 
     async cleanup(): Promise<void> {

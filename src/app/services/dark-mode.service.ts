@@ -4,7 +4,7 @@ import { DOCUMENT } from '@angular/common';
 @Injectable({
     providedIn: 'root',
 })
-export class DarkLightModeService {
+export class DarkModeService {
     private readonly document = inject(DOCUMENT);
 
     enableDarkMode(): void {

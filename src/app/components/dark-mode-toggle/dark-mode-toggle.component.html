@@ -1,5 +1,5 @@
 <button
-    (click)="darkLightModeStore.mode() === 'light' ? darkLightModeStore.enableDarkMode() : darkLightModeStore.enableLightMode()"
+    (click)="darkModeStore.mode() === 'light' ? darkModeStore.enableDarkMode() : darkModeStore.enableLightMode()"
     class="dark:hover: flex h-9 w-9 items-center justify-center rounded-lg border border-gray-200 bg-white p-2 text-xs font-medium text-gray-700 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-2 focus:ring-gray-300 dark:border-gray-600 dark:bg-gray-950 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-500">
-    <fa-icon [icon]="darkLightModeStore.mode() === 'light' ? faSun : faMoon" size="xl"></fa-icon>
+    <fa-icon [icon]="darkModeStore.mode() === 'light' ? faSun : faMoon" size="xl"></fa-icon>
 </button>

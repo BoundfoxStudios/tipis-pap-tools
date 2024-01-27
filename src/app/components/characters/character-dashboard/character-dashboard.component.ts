@@ -73,4 +73,95 @@ export default class CharacterDashboardComponent {
             main: { ...character.main, intelligence: character.main.intelligence + increment },
         });
     }
+
+    protected updateLife(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, life: character.value.life + increment },
+        });
+    }
+
+    protected updatePower(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, power: character.value.power + increment },
+        });
+    }
+
+    protected updateEnergy(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, energy: character.value.energy + increment },
+        });
+    }
+
+    protected updateStrike(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, strike: character.value.strike + increment },
+        });
+    }
+
+    protected updatePerception(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, perception: character.value.perception + increment },
+        });
+    }
+
+    protected updateMagicDefense(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, magicDefense: character.value.magicDefense + increment },
+        });
+    }
+
+    protected updateMagicTolerance(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, magicTolerance: character.value.magicTolerance + increment },
+        });
+    }
+
+    protected updateMagicControl(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, magicControl: character.value.magicControl + increment },
+        });
+    }
+
+    protected updateMana(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, mana: character.value.mana + increment },
+        });
+    }
+
+    protected updateManaRegeneration(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, manaRegeneration: character.value.manaRegeneration + increment },
+        });
+    }
+
+    protected updateReaction(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, reaction: character.value.reaction + increment },
+        });
+    }
+
+    protected updateCover(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, cover: character.value.cover + increment },
+        });
+    }
+
+    protected updateAuthority(character: CharacterEntity, increment: number) {
+        void this.characterStore.update({
+            ...character,
+            value: { ...character.value, authority: character.value.authority + increment },
+        });
+    }
 }

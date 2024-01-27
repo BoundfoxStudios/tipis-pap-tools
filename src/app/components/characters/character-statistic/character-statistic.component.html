@@ -8,7 +8,7 @@
     @if (allowEdit) {
         <div class="flex items-center">
             <p>{{ value }}</p>
-            <div class="ml-4 inline-flex rounded-md shadow-sm" role="group">
+            <div class="ml-4 inline-flex rounded-md" role="group">
                 @if (allowTenIncrement) {
                     <button
                         (click)="incrementChange.emit(10)"

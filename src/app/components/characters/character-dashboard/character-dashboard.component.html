@@ -1,4 +1,7 @@
-<pap-h1>{{ character().name }}</pap-h1>
+<pap-h1
+    >{{ character().name }}
+    <pap-secondary-h1>{{ character().age }}, {{ character().gender }}, {{ character().nation }} , {{ character().religion }} </pap-secondary-h1>
+</pap-h1>
 
 <section class="flex flex-col xl:flex-row xl:space-x-4">
     <div class="flex w-full xl:w-2/5">
@@ -39,10 +42,10 @@
     <div class="mt-4 w-full xl:mt-0 xl:w-3/5">
         <pap-content-group class="flex-1" label="Werte Tabelle">
             <div
-                class="flex "
-                [class.space-x-4]="!editModeStore.isEnabled()"
                 [class.flex-col]="editModeStore.isEnabled()"
-                [class.space-y-2]="editModeStore.isEnabled()">
+                [class.space-x-4]="!editModeStore.isEnabled()"
+                [class.space-y-2]="editModeStore.isEnabled()"
+                class="flex ">
                 <div class="flex-1 space-y-2">
                     <pap-character-statistic
                         (incrementChange)="updateLife(character(), $event)"

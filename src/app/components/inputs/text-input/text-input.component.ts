@@ -16,6 +16,9 @@ export class TextInputComponent {
     @Input({ required: true }) label!: string;
     @Input({ required: true }) control!: FormControl;
     @Input() autoComplete = 'off';
+    @Input() valueType: 'text' | 'number' = 'text';
+    @Input() min?: number;
+    @Input() autofocus?: boolean;
 
     protected readonly id = `control_${controlId++}`;
 }

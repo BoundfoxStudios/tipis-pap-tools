@@ -1,25 +1,24 @@
 import { inject, Injectable } from '@angular/core';
-import { DatabaseService } from './database.service';
 import { CharacterEntity } from '../models/character/character.entity';
+import { CharacterStore } from '../stores/character.store';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CharactersService {
-    private readonly databaseService = inject(DatabaseService);
-
-    list(): Promise<CharacterEntity[]> {
-        return this.databaseService.characters.toArray();
-    }
+    private readonly charactersStore = inject(CharacterStore);
 
     async update(character: CharacterEntity) {
-        await this.databaseService.characters.update(character.id, character);
+        await this.charactersStore.update(character);
     }
 
-    async add(name: string): Promise<CharacterEntity> {
-        const id = await this.databaseService.characters.add({
+    async add(name: string, gender: string, age: number, nation: string, religion: string): Promise<CharacterEntity> {
+        return this.charactersStore.add({
             name,
-            id: 1, // prevent creating more than one character
+            gender,
+            age,
+            nation,
+            religion,
             main: {
                 agility: 0,
                 magic: 0,
@@ -44,11 +43,5 @@ export class CharactersService {
                 authority: 0,
             },
         });
-        const character = await this.item(id);
-        return character!;
-    }
-
-    private item(id: number): Promise<CharacterEntity | undefined> {
-        return this.databaseService.characters.get(id);
     }
 }

@@ -4,6 +4,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 import { TextInputComponent } from '../../inputs/text-input/text-input.component';
 import { SubmitButtonComponent } from '../../inputs/submit-button/submit-button.component';
 import { Router, RouterLink } from '@angular/router';
+import { CharactersService } from '../../../services/characters.service';
 import { CharacterStore } from '../../../stores/character.store';
 
 @Component({
@@ -17,8 +18,13 @@ import { CharacterStore } from '../../../stores/character.store';
 export default class CreateCharacterComponent {
     protected readonly formGroup = inject(FormBuilder).group({
         name: ['', Validators.required],
+        nation: ['', Validators.required],
+        gender: ['', Validators.required],
+        age: [0, [Validators.required, Validators.min(0)]],
+        religion: ['', Validators.required],
     });
-    protected readonly characterStore = inject(CharacterStore);
+    protected readonly charactersService = inject(CharactersService);
+    protected readonly charactersStore = inject(CharacterStore);
     private readonly router = inject(Router);
 
     protected async submit(): Promise<void> {
@@ -26,7 +32,14 @@ export default class CreateCharacterComponent {
             return;
         }
 
-        const id = await this.characterStore.create(this.formGroup.value.name!);
-        await this.router.navigate(['/characters', id, 'dashboard']);
+        const character = await this.charactersService.add(
+            this.formGroup.value.name!,
+            this.formGroup.value.gender!,
+            this.formGroup.value.age!,
+            this.formGroup.value.nation!,
+            this.formGroup.value.religion!,
+        );
+
+        await this.router.navigate(['/characters', character.id, 'dashboard']);
     }
 }

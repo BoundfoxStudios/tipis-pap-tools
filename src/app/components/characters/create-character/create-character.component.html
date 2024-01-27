@@ -1,15 +1,19 @@
-@if (characterStore.count() > 0) {
+@if (charactersStore.count() > 0) {
     <pap-h1>Keine Charaktererstellung möglich</pap-h1>
 
     <p>
         Du hast bereits einen Charakter erstellt, gehe daher bitte zu seinem
-        <a class="underline" [routerLink]="['/characters', characterStore.entities()[0].id, 'dashboard']">Dashboard</a>.
+        <a class="underline" [routerLink]="['/characters', charactersStore.entities()[0].id, 'dashboard']">Dashboard</a>.
     </p>
 } @else {
     <pap-h1>Neuen Charakter erstellen</pap-h1>
 
-    <form [formGroup]="formGroup" (ngSubmit)="submit()">
-        <pap-text-input [control]="formGroup.controls['name']" label="Name" autoComplete="nickname" />
+    <form [formGroup]="formGroup" (ngSubmit)="submit()" class="space-y-4">
+        <pap-text-input class="block" [control]="formGroup.controls['name']" label="Name" [autofocus]="true" autoComplete="nickname" />
+        <pap-text-input class="block" [control]="formGroup.controls['age']" label="Alter" valueType="number" [min]="0" />
+        <pap-text-input class="block" [control]="formGroup.controls['gender']" label="Geschlecht" />
+        <pap-text-input class="block" [control]="formGroup.controls['nation']" label="Volk" />
+        <pap-text-input class="block" [control]="formGroup.controls['religion']" label="Religion" />
 
         <pap-submit-button class="mt-4" [disabled]="formGroup.invalid">Charakter erstellen</pap-submit-button>
     </form>

@@ -18,6 +18,7 @@ import { EditModeStore } from '../../../stores/edit-mode.store';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export default class CharacterDashboardComponent {
+    protected readonly editModeStore = inject(EditModeStore);
     private readonly activatedRoute = inject(ActivatedRoute);
     private readonly characterStore = inject(CharacterStore);
     private readonly id = toSignal(
@@ -30,29 +31,46 @@ export default class CharacterDashboardComponent {
     protected readonly character = computed(() => {
         return this.characterStore.entityMap()[this.id()!];
     });
-    protected readonly editModeStore = inject(EditModeStore);
 
     protected updateStrength(character: CharacterEntity, increment: number) {
-        void this.characterStore.update({ ...character, strength: character.strength + increment });
+        void this.characterStore.update({
+            ...character,
+            main: { ...character.main, strength: character.main.strength + increment },
+        });
     }
 
     protected updateAgility(character: CharacterEntity, increment: number) {
-        void this.characterStore.update({ ...character, agility: character.agility + increment });
+        void this.characterStore.update({
+            ...character,
+            main: { ...character.main, agility: character.main.agility + increment },
+        });
     }
 
     protected updateStamina(character: CharacterEntity, increment: number) {
-        void this.characterStore.update({ ...character, stamina: character.stamina + increment });
+        void this.characterStore.update({
+            ...character,
+            main: { ...character.main, stamina: character.main.stamina + increment },
+        });
     }
 
     protected updateMagic(character: CharacterEntity, increment: number) {
-        void this.characterStore.update({ ...character, magic: character.magic + increment });
+        void this.characterStore.update({
+            ...character,
+            main: { ...character.main, magic: character.main.magic + increment },
+        });
     }
 
     protected updateSpirit(character: CharacterEntity, increment: number) {
-        void this.characterStore.update({ ...character, spirit: character.spirit + increment });
+        void this.characterStore.update({
+            ...character,
+            main: { ...character.main, spirit: character.main.spirit + increment },
+        });
     }
 
     protected updateIntelligence(character: CharacterEntity, increment: number) {
-        void this.characterStore.update({ ...character, intelligence: character.intelligence + increment });
+        void this.characterStore.update({
+            ...character,
+            main: { ...character.main, intelligence: character.main.intelligence + increment },
+        });
     }
 }

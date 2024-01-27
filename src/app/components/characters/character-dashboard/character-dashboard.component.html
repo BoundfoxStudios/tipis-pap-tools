@@ -4,36 +4,36 @@
     <pap-character-statistic
         (incrementChange)="updateStrength(character(), $event)"
         [allowEdit]="editModeStore.isEnabled()"
-        [value]="character().strength"
+        [value]="character().main.strength"
         label="Stärke"></pap-character-statistic>
     <pap-character-statistic
         (incrementChange)="updateAgility(character(), $event)"
         [allowEdit]="editModeStore.isEnabled()"
-        [value]="character().agility"
+        [value]="character().main.agility"
         class="mt-2"
         label="Beweglichkeit"></pap-character-statistic>
     <pap-character-statistic
         (incrementChange)="updateStamina(character(), $event)"
         [allowEdit]="editModeStore.isEnabled()"
-        [value]="character().stamina"
+        [value]="character().main.stamina"
         class="mt-2"
         label="Ausdauer"></pap-character-statistic>
     <pap-character-statistic
         (incrementChange)="updateMagic(character(), $event)"
         [allowEdit]="editModeStore.isEnabled()"
-        [value]="character().magic"
+        [value]="character().main.magic"
         class="mt-2"
         label="Magie"></pap-character-statistic>
     <pap-character-statistic
         (incrementChange)="updateSpirit(character(), $event)"
         [allowEdit]="editModeStore.isEnabled()"
-        [value]="character().spirit"
+        [value]="character().main.spirit"
         class="mt-2"
         label="Geist"></pap-character-statistic>
     <pap-character-statistic
         (incrementChange)="updateIntelligence(character(), $event)"
         [allowEdit]="editModeStore.isEnabled()"
-        [value]="character().intelligence"
+        [value]="character().main.intelligence"
         class="mt-2"
         label="Intelligenz"></pap-character-statistic>
 </pap-content-group>

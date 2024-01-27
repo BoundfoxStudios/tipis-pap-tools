@@ -1,30 +1,30 @@
 import { patchState, signalStore, withComputed, withMethods } from '@ngrx/signals';
 import { addEntity, setAllEntities, updateEntity, withEntities } from '@ngrx/signals/entities';
 import { CharacterEntity } from '../models/character/character.entity';
-import { CharacterTable } from '../services/tables/character.table';
 import { computed, effect, inject, Injector } from '@angular/core';
 import { setAppInitialized, withAppInitialization } from './features/with-app-initialization';
+import { CharactersService } from '../services/characters.service';
 
 export const CharacterStore = signalStore(
     { providedIn: 'root' },
     withAppInitialization(),
     withEntities<CharacterEntity>(),
     withMethods(store => {
-        const characterTable = inject(CharacterTable);
+        const charactersService = inject(CharactersService);
 
         return {
             restore: async () => {
-                const characters = await characterTable.list();
+                const characters = await charactersService.list();
                 patchState(store, setAllEntities(characters), setAppInitialized());
             },
             create: async (name: string) => {
-                const newCharacter = await characterTable.add(name);
+                const newCharacter = await charactersService.add(name);
                 patchState(store, addEntity(newCharacter));
 
                 return newCharacter.id;
             },
             update: async (character: CharacterEntity) => {
-                await characterTable.update(character);
+                await charactersService.update(character);
                 patchState(
                     store,
                     updateEntity({

@@ -20,7 +20,23 @@
       ]
     },
     "allowlist": {
-      "all": false
+      "all": false,
+      "app": {
+        "all": true
+      },
+      "shell": {
+        "all": false,
+        "open": true
+      },
+      "dialog": {
+        "all": false,
+        "save": true,
+        "confirm": true
+      },
+      "fs": {
+        "all": false,
+        "writeFile": true
+      }
     },
     "bundle": {
       "active": true,

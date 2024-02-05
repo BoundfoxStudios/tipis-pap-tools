@@ -40,4 +40,13 @@ export const routes: Routes = [
             },
         ],
     },
+    {
+        path: 'settings',
+        children: [
+            {
+                path: 'backup-restore',
+                loadComponent: () => import('./components/settings/backup-restore/backup-restore.component'),
+            },
+        ],
+    },
 ];

@@ -1,0 +1,32 @@
+<pap-h1>Backup</pap-h1>
+
+<p>Bitte erstelle regelmäßig ein Backup, sodass Du Deine Daten nicht verlierst.</p>
+
+<pap-submit-button (click)="createBackup()" class="mt-4">Backup erstellen</pap-submit-button>
+
+<pap-h2 class="mt-8 block">Gefahrenzone</pap-h2>
+
+<section class="divide-y divide-red-500  rounded border border-red-500">
+    <div class="flex space-x-4 p-4">
+        <div class="flex-1">
+            <pap-h3>Backup importieren</pap-h3>
+            <p>Hier kannst Du ein Backup wieder importieren. Bitte beachte, dass alle Daten überschrieben werden!</p>
+            <p>Lege Dir zuvor ein Backup an, damit Du im Notfall dieses Wiederherstellen kannst.</p>
+        </div>
+        <div class="flex items-center">
+            <input type="file" accept=".json" class="hidden" #fileInput [formControl]="fileControl" (change)="fileChange()" />
+            <pap-submit-button (click)="import()" [danger]="true">Importieren</pap-submit-button>
+        </div>
+    </div>
+
+    <div class="flex space-x-4 p-4">
+        <div class="flex-1">
+            <pap-h3>Zurücksetzen</pap-h3>
+            <p>Hier kannst Du die gesamte Anwendung zurücksetzen. Alle Deine Daten und Einstellungen gehen verloren.</p>
+            <p>Lege Dir zuvor ein Backup an, damit Du im Notfall dieses Wiederherstellen kannst.</p>
+        </div>
+        <div class="flex items-center">
+            <pap-submit-button (click)="reset()" [danger]="true">Zurücksetzen</pap-submit-button>
+        </div>
+    </div>
+</section>

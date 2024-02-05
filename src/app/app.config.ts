@@ -6,6 +6,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { databaseInitializerFactory, databaseInitializerFactoryDeps } from './services/database.service';
 import { charactersStoreInitializerFactory, charactersStoreInitializerFactoryDeps } from './stores/characters.store';
 import { darkModeServiceInitializerFactory, darkModeServiceInitializerFactoryDeps } from './services/dark-mode.service';
+import { TauriService, tauriServiceFactory } from './services/tauri.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -33,6 +34,10 @@ export const appConfig: ApplicationConfig = {
             useFactory: darkModeServiceInitializerFactory,
             deps: darkModeServiceInitializerFactoryDeps,
             multi: true,
+        },
+        {
+            provide: TauriService,
+            useFactory: tauriServiceFactory,
         },
     ],
 };

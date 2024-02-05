@@ -34,8 +34,18 @@ export class DatabaseService extends Dexie {
         return this.export();
     }
 
-    importFromBlob(blob: Blob): Promise<void> {
-        return this.import(blob, { clearTablesBeforeImport: true });
+    async importFromBlob(blob: Blob): Promise<boolean> {
+        try {
+            await this.import(blob, { clearTablesBeforeImport: true });
+        } catch {
+            return false;
+        }
+
+        return true;
+    }
+
+    async clear(): Promise<void> {
+        await this.delete();
     }
 }
 

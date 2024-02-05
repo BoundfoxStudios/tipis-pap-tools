@@ -5,8 +5,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { databaseInitializerFactory, databaseInitializerFactoryDeps } from './services/database.service';
 import { characterStoreInitializerFactory, characterStoreInitializerFactoryDeps } from './stores/character.store';
-import { darkModeStoreInitializerFactory } from './stores/dark-mode.store';
-import { storeInitializerFactoryDeps } from './stores/features/with-app-initialization';
+import { darkModeServiceInitializerFactory, darkModeServiceInitializerFactoryDeps } from './services/dark-mode.service';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -31,8 +30,8 @@ export const appConfig: ApplicationConfig = {
         },
         {
             provide: APP_INITIALIZER,
-            useFactory: darkModeStoreInitializerFactory,
-            deps: storeInitializerFactoryDeps,
+            useFactory: darkModeServiceInitializerFactory,
+            deps: darkModeServiceInitializerFactoryDeps,
             multi: true,
         },
     ],

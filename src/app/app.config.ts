@@ -4,7 +4,7 @@ import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { databaseInitializerFactory, databaseInitializerFactoryDeps } from './services/database.service';
-import { characterStoreInitializerFactory, characterStoreInitializerFactoryDeps } from './stores/character.store';
+import { charactersStoreInitializerFactory, charactersStoreInitializerFactoryDeps } from './stores/characters.store';
 import { darkModeServiceInitializerFactory, darkModeServiceInitializerFactoryDeps } from './services/dark-mode.service';
 
 export const appConfig: ApplicationConfig = {
@@ -24,8 +24,8 @@ export const appConfig: ApplicationConfig = {
         },
         {
             provide: APP_INITIALIZER,
-            useFactory: characterStoreInitializerFactory,
-            deps: characterStoreInitializerFactoryDeps,
+            useFactory: charactersStoreInitializerFactory,
+            deps: charactersStoreInitializerFactoryDeps,
             multi: true,
         },
         {

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CharacterStore } from '../../../stores/character.store';
+import { CharactersStore } from '../../../stores/characters.store';
 import { filter, map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { H1Component } from '../../headings/h1/h1.component';
@@ -22,7 +22,7 @@ import { SecondaryH1Component } from '../../headings/secondary-h1/secondary-h1.c
 export default class CharacterDashboardComponent {
     protected readonly editModeStore = inject(EditModeStore);
     private readonly activatedRoute = inject(ActivatedRoute);
-    private readonly characterStore = inject(CharacterStore);
+    private readonly characterStore = inject(CharactersStore);
     private readonly charactersService = inject(CharactersService);
     private readonly id = toSignal(
         this.activatedRoute.paramMap.pipe(

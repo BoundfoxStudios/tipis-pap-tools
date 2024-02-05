@@ -1,12 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { CharacterEntity } from '../models/character/character.entity';
-import { CharacterStore } from '../stores/character.store';
+import { CharactersStore } from '../stores/characters.store';
 
 @Injectable({
     providedIn: 'root',
 })
 export class CharactersService {
-    private readonly charactersStore = inject(CharacterStore);
+    private readonly charactersStore = inject(CharactersStore);
 
     async update(character: CharacterEntity) {
         await this.charactersStore.update(character);

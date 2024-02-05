@@ -5,7 +5,7 @@ import { TextInputComponent } from '../../inputs/text-input/text-input.component
 import { SubmitButtonComponent } from '../../inputs/submit-button/submit-button.component';
 import { Router, RouterLink } from '@angular/router';
 import { CharactersService } from '../../../services/characters.service';
-import { CharacterStore } from '../../../stores/character.store';
+import { CharactersStore } from '../../../stores/characters.store';
 
 @Component({
     selector: 'pap-create-character',
@@ -24,7 +24,7 @@ export default class CreateCharacterComponent {
         religion: ['', Validators.required],
     });
     protected readonly charactersService = inject(CharactersService);
-    protected readonly charactersStore = inject(CharacterStore);
+    protected readonly charactersStore = inject(CharactersStore);
     private readonly router = inject(Router);
 
     protected async submit(): Promise<void> {

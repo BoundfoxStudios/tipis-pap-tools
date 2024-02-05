@@ -5,7 +5,7 @@ import { computed, effect, inject, Injector } from '@angular/core';
 import { withAppInitialization } from './features/with-app-initialization';
 import { CharactersTable } from '../services/tables/characters.table';
 
-export const CharacterStore = signalStore(
+export const CharactersStore = signalStore(
     { providedIn: 'root' },
     withEntities<CharacterEntity>(),
     withMethods(store => {
@@ -40,9 +40,9 @@ export const CharacterStore = signalStore(
     })),
 );
 
-export const characterStoreInitializerFactory = (injector: Injector): (() => Promise<boolean>) => {
+export const charactersStoreInitializerFactory = (injector: Injector): (() => Promise<boolean>) => {
     return async () => {
-        const characterStore = injector.get(CharacterStore);
+        const characterStore = injector.get(CharactersStore);
         await characterStore.initialize();
 
         return new Promise(resolve =>
@@ -60,4 +60,4 @@ export const characterStoreInitializerFactory = (injector: Injector): (() => Pro
     };
 };
 
-export const characterStoreInitializerFactoryDeps = [Injector];
+export const charactersStoreInitializerFactoryDeps = [Injector];

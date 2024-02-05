@@ -15,7 +15,7 @@ export const routes: Routes = [
                 loadComponent: () => import('./components/characters/create-character/create-character.component'),
             },
             {
-                path: ':id',
+                path: ':characterId',
                 children: [
                     {
                         path: '',

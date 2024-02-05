@@ -5,7 +5,6 @@ import { TextInputComponent } from '../../inputs/text-input/text-input.component
 import { SubmitButtonComponent } from '../../inputs/submit-button/submit-button.component';
 import { Router, RouterLink } from '@angular/router';
 import { CharactersService } from '../../../services/characters.service';
-import { CharactersStore } from '../../../stores/characters.store';
 
 @Component({
     selector: 'pap-create-character',
@@ -22,9 +21,9 @@ export default class CreateCharacterComponent {
         gender: ['', Validators.required],
         age: [0, [Validators.required, Validators.min(0)]],
         religion: ['', Validators.required],
+        group: ['', Validators.required],
     });
     protected readonly charactersService = inject(CharactersService);
-    protected readonly charactersStore = inject(CharactersStore);
     private readonly router = inject(Router);
 
     protected async submit(): Promise<void> {
@@ -38,6 +37,7 @@ export default class CreateCharacterComponent {
             this.formGroup.value.age!,
             this.formGroup.value.nation!,
             this.formGroup.value.religion!,
+            this.formGroup.value.group!,
         );
 
         await this.router.navigate(['/characters', character.id, 'dashboard']);

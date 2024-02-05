@@ -12,13 +12,14 @@ export class CharactersService {
         await this.charactersStore.update(character);
     }
 
-    async add(name: string, gender: string, age: number, nation: string, religion: string): Promise<CharacterEntity> {
+    async add(name: string, gender: string, age: number, nation: string, religion: string, group: string): Promise<CharacterEntity> {
         return this.charactersStore.add({
             name,
             gender,
             age,
             nation,
             religion,
+            group,
             main: {
                 agility: 0,
                 magic: 0,

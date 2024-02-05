@@ -6,7 +6,9 @@
     <div class="flex h-full flex-col overflow-y-auto bg-white px-3 py-5 dark:bg-gray-950">
         <div class="space-y-2">
             <pap-sidebar-item-group [icon]="faDragon" label="Charakter">
-                <pap-sidebar-item [icon]="faDashboard" [link]="['/characters/1/dashboard']">Dashboard</pap-sidebar-item>
+                <pap-sidebar-item [icon]="faDashboard" [link]="['/characters', currentCharacterIdOrDefault() ,'dashboard']"
+                    >Dashboard</pap-sidebar-item
+                >
             </pap-sidebar-item-group>
         </div>
         <div class="space-y-2">
@@ -16,11 +18,19 @@
         </div>
         <div class="space-y-2">
             <pap-sidebar-item-group [icon]="faGears" label="Einstellungen">
-                <pap-sidebar-item [icon]="faArrowRotateBackward" [link]="['/settings/backup-restore']">Backup</pap-sidebar-item>
+                <pap-sidebar-item [icon]="faArrowRotateBackward" [link]="['/settings/backup-restore']">Backup </pap-sidebar-item>
             </pap-sidebar-item-group>
         </div>
 
-        <div class="mt-auto flex flex-col p-4 pt-2 text-center">
+        <div class="mt-auto flex flex-col pt-2 text-center">
+            @if (charactersStore.count() && currentCharacter()) {
+                <hr class="my-4 h-px border-0 bg-gray-200 dark:bg-gray-700" />
+                <pap-character-switcher
+                    [currentCharacter]="currentCharacter()!"
+                    [characters]="charactersStore.entities()"
+                    (characterSelected)="switchCharacter($event)" />
+            }
+            <hr class="my-4 h-px border-0 bg-gray-200 dark:bg-gray-700" />
             <div>
                 <a href="https://github.com/boundfoxstudios/tipis-pap-tools" target="_blank">
                     <fa-icon [icon]="faGithub" />
@@ -34,7 +44,7 @@
                     }
                 </a>
             </div>
-            <div class="mt-1 text-xs font-extralight text-gray-400">
+            <div class="mb-4 mt-1 text-xs font-extralight text-gray-400">
                 With
                 <fa-icon [icon]="faHeart" class="text-red-600" />
                 by Boundfox Studios

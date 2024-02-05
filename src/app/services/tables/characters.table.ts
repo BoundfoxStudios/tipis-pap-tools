@@ -13,8 +13,7 @@ export class CharactersTable {
     async add(character: Omit<CharacterEntity, 'id'>) {
         const id = await this.databaseService.characters.add({
             ...character,
-            id: 1, // prevent creating more than one character
-        });
+        } as CharacterEntity);
 
         const newCharacter = await this.databaseService.characters.get(id);
         return newCharacter!;

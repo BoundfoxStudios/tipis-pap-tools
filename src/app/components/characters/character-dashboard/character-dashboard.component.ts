@@ -26,7 +26,7 @@ export default class CharacterDashboardComponent {
     private readonly charactersService = inject(CharactersService);
     private readonly id = toSignal(
         this.activatedRoute.paramMap.pipe(
-            map(params => params.get('id')),
+            map(params => params.get('characterId')),
             filter(id => !!id),
             map(id => +id!),
         ),

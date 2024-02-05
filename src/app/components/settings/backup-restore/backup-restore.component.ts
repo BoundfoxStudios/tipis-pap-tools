@@ -6,7 +6,6 @@ import { TauriService } from '../../../services/tauri.service';
 import { DateTime } from 'luxon';
 import { H2Component } from '../../headings/h2/h2.component';
 import { H3Component } from '../../headings/h3/h3.component';
-import { Router } from '@angular/router';
 import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FileDirective } from '../../../directives/file.directive';
 
@@ -22,7 +21,6 @@ export default class BackupRestoreComponent {
     protected readonly fileControl = new FormControl<File | null>(null, { validators: [Validators.required] });
     private readonly databaseService = inject(DatabaseService);
     private readonly tauriService = inject(TauriService);
-    private readonly router = inject(Router);
     @ViewChild('fileInput')
     private readonly fileInputElement!: ElementRef<HTMLInputElement>;
 
@@ -64,7 +62,7 @@ export default class BackupRestoreComponent {
             return;
         }
 
-        await this.router.navigateByUrl('/');
+        window.location.reload();
     }
 
     async reset(): Promise<void> {
@@ -75,6 +73,6 @@ export default class BackupRestoreComponent {
         }
 
         await this.databaseService.clear();
-        await this.router.navigateByUrl('/');
+        window.location.reload();
     }
 }

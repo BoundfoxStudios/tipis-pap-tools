@@ -3,121 +3,50 @@
     <pap-secondary-h1>{{ character().age }}, {{ character().gender }}, {{ character().nation }} , {{ character().religion }} </pap-secondary-h1>
 </pap-h1>
 
-<section class="flex flex-col xl:flex-row xl:space-x-4">
-    <div class="flex w-full xl:w-2/5">
-        <pap-content-group class="flex-1" label="Main Stats">
-            <pap-character-statistic
-                (incrementChange)="updateStrength(character(), $event)"
-                [allowEdit]="editModeStore.isEnabled()"
-                [value]="character().main.strength"
-                label="Stärke" />
-            <pap-character-statistic
-                (incrementChange)="updateAgility(character(), $event)"
-                [allowEdit]="editModeStore.isEnabled()"
-                [value]="character().main.agility"
-                label="Beweglichkeit" />
-            <pap-character-statistic
-                (incrementChange)="updateStamina(character(), $event)"
-                [allowEdit]="editModeStore.isEnabled()"
-                [value]="character().main.stamina"
-                label="Ausdauer" />
-            <pap-character-statistic
-                (incrementChange)="updateMagic(character(), $event)"
-                [allowEdit]="editModeStore.isEnabled()"
-                [value]="character().main.magic"
-                label="Magie" />
-            <pap-character-statistic
-                (incrementChange)="updateSpirit(character(), $event)"
-                [allowEdit]="editModeStore.isEnabled()"
-                [value]="character().main.spirit"
-                label="Geist" />
-            <pap-character-statistic
-                (incrementChange)="updateIntelligence(character(), $event)"
-                [allowEdit]="editModeStore.isEnabled()"
-                [value]="character().main.intelligence"
-                label="Intelligenz" />
-        </pap-content-group>
-    </div>
+<form [formGroup]="formGroup">
+    <section class="flex flex-col xl:flex-row xl:space-x-4">
+        <div class="flex w-full xl:w-2/5">
+            <pap-content-group class="flex-1" formGroupName="main" title="Main Stats">
+                <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="strength" label="Stärke" />
+                <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="agility" label="Beweglichkeit" />
+                <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="stamina" label="Ausdauer" />
+                <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="magic" label="Magie" />
+                <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="spirit" label="Geist" />
+                <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="intelligence" label="Intelligenz" />
+            </pap-content-group>
+        </div>
 
-    <div class="mt-4 w-full xl:mt-0 xl:w-3/5">
-        <pap-content-group class="flex-1" label="Werte Tabelle">
-            <div
-                [class.flex-col]="editModeStore.isEnabled()"
-                [class.space-x-4]="!editModeStore.isEnabled()"
-                [class.space-y-2]="editModeStore.isEnabled()"
-                class="flex ">
-                <div class="flex-1 space-y-2">
-                    <pap-character-statistic
-                        (incrementChange)="updateLife(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.life"
-                        label="Leben" />
-                    <pap-character-statistic
-                        (incrementChange)="updatePower(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.power"
-                        label="Kraft" />
-                    <pap-character-statistic
-                        (incrementChange)="updateEnergy(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.energy"
-                        label="Energie" />
-                    <pap-character-statistic
-                        (incrementChange)="updateStrike(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.strike"
-                        label="Treffen" />
-                    <pap-character-statistic
-                        (incrementChange)="updatePerception(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.perception"
-                        label="Wahrnehmung" />
+        <div class="mt-4 w-full xl:mt-0 xl:w-3/5">
+            <pap-content-group class="flex-1" formGroupName="value" title="Werte Tabelle">
+                <div
+                    [class.flex-col]="editModeStore.isEnabled()"
+                    [class.space-x-4]="!editModeStore.isEnabled()"
+                    [class.space-y-2]="editModeStore.isEnabled()"
+                    class="flex ">
+                    <div class="flex-1 space-y-2">
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="life" label="Leben" />
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="power" label="Kraft" />
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="energy" label="Energie" />
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="strike" label="Treffen" />
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="perception" label="Wahrnehmung" />
+                    </div>
+                    <div class="flex-1 space-y-2">
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="magicDefense" label="Magieabwehr" />
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="magicTolerance" label="Magietoleranz" />
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="magicControl" label="Magielenkung" />
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="mana" label="Mana" />
+                        <pap-character-statistic
+                            [allowEdit]="editModeStore.isEnabled()"
+                            formControlName="manaRegeneration"
+                            label="Manaregeneration" />
+                    </div>
+                    <div class="flex-1 space-y-2">
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="reaction" label="Reaktion" />
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="cover" label="Warnung" />
+                        <pap-character-statistic [allowEdit]="editModeStore.isEnabled()" formControlName="authority" label="Kontrolle" />
+                    </div>
                 </div>
-                <div class="flex-1 space-y-2">
-                    <pap-character-statistic
-                        (incrementChange)="updateMagicDefense(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.magicDefense"
-                        label="Magieabwehr" />
-                    <pap-character-statistic
-                        (incrementChange)="updateMagicTolerance(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.magicTolerance"
-                        label="Magietoleranz" />
-                    <pap-character-statistic
-                        (incrementChange)="updateMagicControl(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.magicControl"
-                        label="Magielenkung" />
-                    <pap-character-statistic
-                        (incrementChange)="updateMana(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.mana"
-                        label="Mana" />
-                    <pap-character-statistic
-                        (incrementChange)="updateManaRegeneration(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.manaRegeneration"
-                        label="Manaregeneration" />
-                </div>
-                <div class="flex-1 space-y-2">
-                    <pap-character-statistic
-                        (incrementChange)="updateReaction(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.reaction"
-                        label="Reaktion" />
-                    <pap-character-statistic
-                        (incrementChange)="updateCover(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.cover"
-                        label="Warnung" />
-                    <pap-character-statistic
-                        (incrementChange)="updateAuthority(character(), $event)"
-                        [allowEdit]="editModeStore.isEnabled()"
-                        [value]="character().value.authority"
-                        label="Kontrolle" />
-                </div>
-            </div>
-        </pap-content-group>
-    </div>
-</section>
+            </pap-content-group>
+        </div>
+    </section>
+</form>

@@ -3,32 +3,35 @@ import { addEntity, setAllEntities, updateEntity, withEntities } from '@ngrx/sig
 import { CharacterEntity } from '../models/character/character.entity';
 import { computed, effect, inject, Injector } from '@angular/core';
 import { withAppInitialization } from './features/with-app-initialization';
-import { CharactersTable } from '../services/tables/characters.table';
+import { CharactersService } from '../services/characters.service';
 
 export const CharactersStore = signalStore(
     { providedIn: 'root' },
     withEntities<CharacterEntity>(),
     withMethods(store => {
-        const charactersTable = inject(CharactersTable);
+        const charactersService = inject(CharactersService);
 
         return {
             restore: async () => {
-                const characters = await charactersTable.list();
+                const characters = await charactersService.list();
                 patchState(store, setAllEntities(characters));
             },
-            add: async (character: Omit<CharacterEntity, 'id'>) => {
-                const newCharacter = await charactersTable.add(character);
+            add: async (character: Omit<CharacterEntity, 'id' | 'value'>) => {
+                const newCharacter = await charactersService.add(character);
                 patchState(store, addEntity(newCharacter));
 
                 return newCharacter;
             },
-            update: async (character: CharacterEntity) => {
-                await charactersTable.update(character);
+            updateStatistics: async (character: CharacterEntity) => {
+                await charactersService.updateStatistics(character);
                 patchState(
                     store,
                     updateEntity({
                         id: character.id,
-                        changes: character,
+                        changes: {
+                            main: character.main,
+                            value: character.value,
+                        },
                     }),
                 );
             },

@@ -11,9 +11,7 @@ export class CharactersTable {
     }
 
     async add(character: Omit<CharacterEntity, 'id'>) {
-        const id = await this.databaseService.characters.add({
-            ...character,
-        } as CharacterEntity);
+        const id = await this.databaseService.characters.add(character as CharacterEntity);
 
         const newCharacter = await this.databaseService.characters.get(id);
         return newCharacter!;

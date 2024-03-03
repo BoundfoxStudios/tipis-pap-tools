@@ -1,7 +1,8 @@
 import { MainStatistics } from './main-statistics';
 import { ValueStatistics } from './value-statistics';
+import { Statistics } from './statistics';
 
-export interface CharacterEntity {
+export interface CharacterEntity extends Statistics {
     id: number;
     name: string;
     gender: string;

@@ -1,44 +1,48 @@
 <div class="flex h-8 items-center justify-between">
-    <p>{{ label }}</p>
+    <p>{{ label() }}</p>
 
-    @if (!allowEdit) {
-        <p>{{ value }}</p>
+    @if (!allowEdit()) {
+        <p>{{ value() }}</p>
     }
 
-    @if (allowEdit) {
+    @if (allowEdit()) {
         <div class="flex items-center">
-            <p>{{ value }}</p>
+            <p>{{ value() }}</p>
             <div class="ml-4 inline-flex rounded-md" role="group">
-                @if (allowTenIncrement) {
+                @if (showTens()) {
                     <button
-                        (click)="incrementChange.emit(10)"
-                        class="rounded-s-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 hover:text-green-500 focus:z-10 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
+                        (click)="updateValue(10)"
+                        [disabled]="!canUseTenIncrement()"
+                        class="rounded-s-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:text-green-500 focus:z-10 enabled:hover:bg-gray-100 disabled:text-gray-400 dark:border-gray-600 dark:bg-gray-700 enabled:dark:hover:bg-gray-600"
                         type="button">
                         +10
                     </button>
                 }
 
                 <button
-                    (click)="incrementChange.emit(1)"
-                    class="border-b border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 hover:text-green-500 focus:z-10 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
-                    [class.border-l]="!allowTenIncrement"
-                    [class.rounded-s-lg]="!allowTenIncrement"
+                    (click)="updateValue(1)"
+                    class="border-b border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:text-green-500 focus:z-10 enabled:hover:bg-gray-100 disabled:text-gray-400 dark:border-gray-600 dark:bg-gray-700 enabled:dark:hover:bg-gray-600"
+                    [class.border-l]="!showTens()"
+                    [class.rounded-s-lg]="!showTens()"
+                    [disabled]="!canUseOneIncrement()"
                     type="button">
                     +1
                 </button>
                 <button
-                    (click)="incrementChange.emit(-1)"
-                    class="border-b border-l border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 hover:text-red-500 focus:z-10 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
-                    [class.border-r]="!allowTenIncrement"
-                    [class.rounded-e-lg]="!allowTenIncrement"
+                    (click)="updateValue(-1)"
+                    class="border-b border-l border-t border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:text-red-500 focus:z-10 enabled:hover:bg-gray-100 disabled:text-gray-400 dark:border-gray-600 dark:bg-gray-700 enabled:dark:hover:bg-gray-600"
+                    [class.border-r]="!showTens()"
+                    [class.rounded-e-lg]="!showTens()"
+                    [disabled]="!canUseOneDecrement()"
                     type="button">
                     -1
                 </button>
 
-                @if (allowTenIncrement) {
+                @if (showTens()) {
                     <button
-                        (click)="incrementChange.emit(-10)"
-                        class="rounded-e-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 hover:text-red-500 focus:z-10 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600"
+                        (click)="updateValue(-10)"
+                        [disabled]="!canUseTenDecrement()"
+                        class="rounded-e-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:text-red-500 focus:z-10 enabled:hover:bg-gray-100 disabled:text-gray-400 dark:border-gray-600 dark:bg-gray-700 enabled:dark:hover:bg-gray-600"
                         type="button">
                         -10
                     </button>

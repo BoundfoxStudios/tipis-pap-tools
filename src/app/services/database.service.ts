@@ -3,6 +3,7 @@ import Dexie, { Table } from 'dexie';
 import 'dexie-export-import';
 import { CharacterEntity } from '../models/character/character.entity';
 import { SettingsEntity } from '../models/settings.entity';
+import { TransactionEntity } from '../models/character/transaction.entity';
 
 @Injectable({
     providedIn: 'root',
@@ -10,6 +11,7 @@ import { SettingsEntity } from '../models/settings.entity';
 export class DatabaseService extends Dexie {
     readonly characters!: Table<CharacterEntity, number>;
     readonly settings!: Table<SettingsEntity, number>;
+    readonly transactions!: Table<TransactionEntity<unknown>, number>;
 
     constructor() {
         super('tipis-pap-tools');
@@ -17,8 +19,13 @@ export class DatabaseService extends Dexie {
         this.version(1).stores({
             characters: '++id',
         });
+
         this.version(2).stores({
             settings: '++id',
+        });
+
+        this.version(3).stores({
+            transactions: '++id,characterId,timestamp',
         });
     }
 

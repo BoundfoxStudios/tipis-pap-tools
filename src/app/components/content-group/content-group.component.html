@@ -1,9 +1,12 @@
 <div class="w-full rounded-lg bg-gray-50 shadow dark:border dark:border-gray-800 dark:bg-gray-900 md:mt-0 xl:p-0">
     <div class="flex flex-col p-6">
-        <pap-h2>{{ label }}</pap-h2>
-
+        <pap-h2>{{ title() }}</pap-h2>
         <div class="flex flex-col space-y-2">
             <ng-content></ng-content>
         </div>
+
+        @if (footer(); as subTitle) {
+            <pap-h3 class="mt-4">{{ subTitle }}</pap-h3>
+        }
     </div>
 </div>

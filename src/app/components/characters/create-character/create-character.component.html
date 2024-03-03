@@ -8,5 +8,20 @@
     <pap-text-input [control]="formGroup.controls['religion']" class="block" label="Religion" />
     <pap-text-input [control]="formGroup.controls['group']" class="block" label="Spielrunde" />
 
+    <div class="flex w-full xl:w-2/5">
+        <pap-content-group
+            [footer]="'Bitte verteile weitere ' + remainingPoints() + ' Punkte.'"
+            class="flex-1"
+            formGroupName="main"
+            title="Main Stats">
+            <pap-character-statistic [allowEdit]="true" [remainingPoints]="remainingPoints()" formControlName="strength" label="Stärke" />
+            <pap-character-statistic [allowEdit]="true" [remainingPoints]="remainingPoints()" formControlName="agility" label="Beweglichkeit" />
+            <pap-character-statistic [allowEdit]="true" [remainingPoints]="remainingPoints()" formControlName="stamina" label="Ausdauer" />
+            <pap-character-statistic [allowEdit]="true" [remainingPoints]="remainingPoints()" formControlName="magic" label="Magie" />
+            <pap-character-statistic [allowEdit]="true" [remainingPoints]="remainingPoints()" formControlName="spirit" label="Geist" />
+            <pap-character-statistic [allowEdit]="true" [remainingPoints]="remainingPoints()" formControlName="intelligence" label="Intelligenz" />
+        </pap-content-group>
+    </div>
+
     <pap-submit-button [disabled]="formGroup.invalid" class="mt-4">Charakter erstellen</pap-submit-button>
 </form>

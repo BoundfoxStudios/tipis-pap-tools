@@ -41,9 +41,10 @@ export class CharactersService {
         );
     }
 
-    async add(character: Omit<CharacterEntity, 'id' | 'value'>): Promise<CharacterEntity> {
+    async add(character: Omit<CharacterEntity, 'id' | 'value' | 'level'>): Promise<CharacterEntity> {
         const characterEntity = await this.charactersTable.add({
             ...character,
+            level: 1,
             value: {
                 life: 0,
                 power: 0,

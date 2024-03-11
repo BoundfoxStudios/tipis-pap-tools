@@ -1,6 +1,8 @@
 <pap-h1
     >{{ character().name }}
-    <pap-secondary-h1>{{ character().age }}, {{ character().gender }}, {{ character().nation }} , {{ character().religion }} </pap-secondary-h1>
+    <pap-secondary-h1
+        >Level {{ character().level }} - {{ character().age }}, {{ character().gender }}, {{ character().nation }} , {{ character().religion }}
+    </pap-secondary-h1>
 </pap-h1>
 
 <form [formGroup]="formGroup">

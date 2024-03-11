@@ -16,7 +16,7 @@ export const CharactersStore = signalStore(
                 const characters = await charactersService.list();
                 patchState(store, setAllEntities(characters));
             },
-            add: async (character: Omit<CharacterEntity, 'id' | 'value'>) => {
+            add: async (character: Omit<CharacterEntity, 'id' | 'value' | 'level'>) => {
                 const newCharacter = await charactersService.add(character);
                 patchState(store, addEntity(newCharacter));
 

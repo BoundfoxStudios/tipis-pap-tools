@@ -4,6 +4,7 @@ import { Statistics } from './statistics';
 
 export interface CharacterEntity extends Statistics {
     id: number;
+    level: number;
     name: string;
     gender: string;
     nation: string;

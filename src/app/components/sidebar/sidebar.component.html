@@ -39,7 +39,7 @@
                         {{ version.version }}
 
                         @if (version.sha) {
-                            <span class="text-xs font-extralight text-gray-400">{{ version.sha }}</span>
+                            <span class="text-xs font-extralight text-gray-400">{{ version.sha.substring(0, 8) }}</span>
                         }
                     }
                 </a>

@@ -1,0 +1,88 @@
+<pap-content-group [footer]="footer()" [formGroup]="formGroup()" class="flex-1" title="Werte Tabelle">
+    <div [class.flex-col]="allowEdit()" [class.space-x-4]="!allowEdit()" [class.space-y-2]="allowEdit()" class="flex ">
+        <div class="flex-1 space-y-2">
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().life"
+                [remainingPoints]="remainingPoints()"
+                formControlName="life"
+                label="Leben" />
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().power"
+                [remainingPoints]="remainingPoints()"
+                formControlName="power"
+                label="Kraft" />
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().energy"
+                [remainingPoints]="remainingPoints()"
+                formControlName="energy"
+                label="Energie" />
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().precision"
+                [remainingPoints]="remainingPoints()"
+                formControlName="precision"
+                label="Präzision" />
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().perception"
+                [remainingPoints]="remainingPoints()"
+                formControlName="perception"
+                label="Wahrnehmung" />
+        </div>
+        <div class="flex-1 space-y-2">
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().magicDefense"
+                [remainingPoints]="remainingPoints()"
+                formControlName="magicDefense"
+                label="Magieabwehr" />
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().magicTolerance"
+                [remainingPoints]="remainingPoints()"
+                formControlName="magicTolerance"
+                label="Magietoleranz" />
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().magicControl"
+                [remainingPoints]="remainingPoints()"
+                formControlName="magicControl"
+                label="Magielenkung" />
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().mana"
+                [remainingPoints]="remainingPoints()"
+                formControlName="mana"
+                label="Mana" />
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().manaRegeneration"
+                [remainingPoints]="remainingPoints()"
+                formControlName="manaRegeneration"
+                label="Manaregeneration" />
+        </div>
+        <div class="flex-1 space-y-2">
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().reaction"
+                [remainingPoints]="remainingPoints()"
+                formControlName="reaction"
+                label="Reaktion" />
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().cover"
+                [remainingPoints]="remainingPoints()"
+                formControlName="cover"
+                label="Warnung" />
+            <pap-character-statistic
+                [allowEdit]="allowEdit()"
+                [displayValue]="calculatedValueStatistics().authority"
+                [remainingPoints]="remainingPoints()"
+                formControlName="authority"
+                label="Kontrolle" />
+        </div>
+    </div>
+</pap-content-group>

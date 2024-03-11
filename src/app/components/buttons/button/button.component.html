@@ -1,14 +1,15 @@
 <button
-    [disabled]="disabled"
-    [ngClass]="{'bg-blue-700 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700': !danger,
-    'bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700': danger}"
+    [disabled]="disabled()"
+    [ngClass]="{'bg-blue-700 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700': !danger(),
+    'bg-red-700 hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700': danger()}"
+    [type]="type()"
+    (click)="tap.emit()"
     class="w-full rounded-lg border border-transparent px-5 py-2.5 text-center text-sm font-medium
     text-white
     focus:outline-none
     disabled:cursor-not-allowed
     disabled:border-gray-200 disabled:bg-white disabled:text-gray-400 dark:bg-blue-600
     dark:hover:bg-blue-700 dark:focus:ring-blue-800
-    disabled:dark:border-gray-400 disabled:dark:bg-gray-950 sm:w-auto"
-    type="submit">
+    disabled:dark:border-gray-400 disabled:dark:bg-gray-950 sm:w-auto">
     <ng-content></ng-content>
 </button>

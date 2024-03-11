@@ -4,16 +4,26 @@ import { CharactersStore } from '../../../stores/characters.store';
 import { filter, map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { H1Component } from '../../headings/h1/h1.component';
-import { CharacterStatisticComponent } from '../character-statistic/character-statistic.component';
+import { CharacterStatisticComponent } from '../character-statistics/character-statistic/character-statistic.component';
 import { ContentGroupComponent } from '../../content-group/content-group.component';
 import { EditModeStore } from '../../../stores/edit-mode.store';
 import { SecondaryH1Component } from '../../headings/secondary-h1/secondary-h1.component';
 import { NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { CharacterMainStatisticsComponent } from '../character-statistics/character-main-statistics/character-main-statistics.component';
+import { CharacterStatisticsComponent } from '../character-statistics/character-statistics.component';
 
 @Component({
     selector: 'pap-character-dashboard',
     standalone: true,
-    imports: [H1Component, CharacterStatisticComponent, ContentGroupComponent, SecondaryH1Component, ReactiveFormsModule],
+    imports: [
+        H1Component,
+        CharacterStatisticComponent,
+        ContentGroupComponent,
+        SecondaryH1Component,
+        ReactiveFormsModule,
+        CharacterMainStatisticsComponent,
+        CharacterStatisticsComponent,
+    ],
     templateUrl: './character-dashboard.component.html',
     styleUrl: './character-dashboard.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -48,7 +58,7 @@ export default class CharacterDashboardComponent {
             life: [0],
             power: [0],
             energy: [0],
-            strike: [0],
+            precision: [0],
             perception: [0],
             magicDefense: [0],
             magicTolerance: [0],
@@ -86,8 +96,6 @@ export default class CharacterDashboardComponent {
 
             // We might want to save the changes
             const statistics = this.formGroup.getRawValue();
-
-            console.log('effect');
 
             void this.characterStore.updateStatistics({ ...character, main: statistics.main, value: statistics.value });
         });

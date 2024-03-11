@@ -12,7 +12,7 @@
             required
             type="text" />
     </div>
-    <pap-submit-button (click)="roll()" [disabled]="!dice"> Würfeln! </pap-submit-button>
+    <pap-button (tap)="roll()" [disabled]="!dice"> Würfeln! </pap-button>
 
     <div class="mt-4">Ergebnis: {{ result }}</div>
 </form>

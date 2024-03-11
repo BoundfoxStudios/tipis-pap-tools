@@ -2,7 +2,7 @@
 
 <p>Bitte erstelle regelmäßig ein Backup, sodass Du Deine Daten nicht verlierst.</p>
 
-<pap-submit-button (click)="createBackup()" class="mt-4">Backup erstellen</pap-submit-button>
+<pap-button (click)="createBackup()" class="mt-4">Backup erstellen</pap-button>
 
 <pap-h2 class="mt-8 block">Gefahrenzone</pap-h2>
 
@@ -15,7 +15,7 @@
         </div>
         <div class="flex items-center">
             <input type="file" accept=".json" class="hidden" #fileInput [formControl]="fileControl" (change)="fileChange()" />
-            <pap-submit-button (click)="import()" [danger]="true">Importieren</pap-submit-button>
+            <pap-button (click)="import()" [danger]="true">Importieren</pap-button>
         </div>
     </div>
 
@@ -26,7 +26,7 @@
             <p>Lege Dir zuvor ein Backup an, damit Du im Notfall dieses Wiederherstellen kannst.</p>
         </div>
         <div class="flex items-center">
-            <pap-submit-button (click)="reset()" [danger]="true">Zurücksetzen</pap-submit-button>
+            <pap-button (click)="reset()" [danger]="true">Zurücksetzen</pap-button>
         </div>
     </div>
 </section>

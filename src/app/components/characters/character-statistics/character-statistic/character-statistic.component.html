@@ -2,12 +2,20 @@
     <p>{{ label() }}</p>
 
     @if (!allowEdit()) {
-        <p>{{ value() }}</p>
+        @if (displayValue(); as displayValue) {
+            <p>{{ displayValue }}</p>
+        } @else {
+            <p>{{ value() }}</p>
+        }
     }
 
     @if (allowEdit()) {
         <div class="flex items-center">
-            <p>{{ value() }}</p>
+            @if (displayValue(); as displayValue) {
+                <p>{{ displayValue }} ({{ value() }})</p>
+            } @else {
+                <p>{{ value() }}</p>
+            }
             <div class="ml-4 inline-flex rounded-md" role="group">
                 @if (showTens()) {
                     <button

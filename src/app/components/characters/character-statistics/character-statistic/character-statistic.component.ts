@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, forwardRef, input, signal } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ValueUpdater } from '../../../types';
+import { ValueUpdater } from '../../../../types';
 
 @Component({
     selector: 'pap-character-statistic',
@@ -24,6 +24,7 @@ export class CharacterStatisticComponent implements ControlValueAccessor {
     maxValue = input(Number.MAX_SAFE_INTEGER);
     showTens = input(true);
     remainingPoints = input(Number.MAX_SAFE_INTEGER);
+    displayValue = input<number>();
     protected value = signal(0);
     protected canUseTenIncrement = computed(() => this.remainingPoints() >= 10 && this.value() + 10 <= this.maxValue());
     protected canUseOneIncrement = computed(() => this.remainingPoints() >= 1 && this.value() + 1 <= this.maxValue());

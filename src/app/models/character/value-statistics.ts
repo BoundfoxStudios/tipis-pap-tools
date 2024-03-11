@@ -32,7 +32,7 @@ export interface ValueStatistics {
     /**
      * Treffen.
      */
-    strike: number;
+    precision: number;
 
     /**
      * Wahrnehmung.

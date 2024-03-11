@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { H1Component } from '../../headings/h1/h1.component';
-import { SubmitButtonComponent } from '../../inputs/submit-button/submit-button.component';
+import { ButtonComponent } from '../../buttons/button/button.component';
 import { DatabaseService } from '../../../services/database.service';
 import { TauriService } from '../../../services/tauri.service';
 import { DateTime } from 'luxon';
@@ -12,7 +12,7 @@ import { FileDirective } from '../../../directives/file.directive';
 @Component({
     selector: 'pap-backup-restore',
     standalone: true,
-    imports: [H1Component, SubmitButtonComponent, H2Component, H3Component, FormsModule, ReactiveFormsModule, FileDirective],
+    imports: [H1Component, ButtonComponent, H2Component, H3Component, FormsModule, ReactiveFormsModule, FileDirective],
     templateUrl: './backup-restore.component.html',
     styleUrl: './backup-restore.component.css',
     changeDetection: ChangeDetectionStrategy.OnPush,

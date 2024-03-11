@@ -1,0 +1,29 @@
+<section class="flex flex-col xl:flex-row xl:space-x-4">
+    <div class="flex w-full flex-col xl:w-2/5">
+        <pap-character-main-statistics
+            [allowEdit]="mainAllowEdit()"
+            [footer]="pointsToDistribute() > 0 ? 'Du kannst noch ' + mainRemainingPoints() + ' Statuspunkte verteilen.' : ''"
+            [formGroup]="mainFormGroup()"
+            [remainingPoints]="mainRemainingPoints()" />
+
+        @if (mainAllowEdit() && valueAllowEdit()) {
+            <pap-content-group class="mt-4" title="Punkte tauschen">
+                <pap-button [disabled]="!canConvertToValuePoints()" (tap)="convertMainToValuePoint()"
+                    >1 Statuspunkt in 3 Wertepunkte tauschen</pap-button
+                >
+                <pap-button [disabled]="!canConverToMainPoint()" (tap)="convertValueToMainPoint()"
+                    >3 Wertepunkte in 1 Statuspunkt tauschen</pap-button
+                >
+            </pap-content-group>
+        }
+    </div>
+
+    <div class="mt-4 w-full xl:mt-0 xl:w-3/5">
+        <pap-character-value-statistics
+            [allowEdit]="valueAllowEdit()"
+            [calculatedValueStatistics]="calculatedValueStatistics()"
+            [formGroup]="valueFormGroup()"
+            [remainingPoints]="valueRemainingPoints()"
+            [footer]="pointsToDistribute() > 0 ? 'Du kannst noch ' + valueRemainingPoints() + ' Wertepunkte verteilen.' : ''" />
+    </div>
+</section>

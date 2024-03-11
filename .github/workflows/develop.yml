@@ -21,13 +21,13 @@ jobs:
 
     runs-on: ${{ matrix.platform }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20
       - name: write version.json
-        uses: jsdaniell/create-json@v1.2.2
+        uses: jsdaniell/create-json@v1.2.3
         with:
           name: version.json
           json: '{ "version": "0.0.0-dev.${{ github.run_number }}", "sha": "${{ github.sha }}" }'
@@ -58,7 +58,7 @@ jobs:
         with:
           includeDebug: true
           includeRelease: false
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: apps-${{ matrix.platform }}
           path: |
@@ -69,8 +69,8 @@ jobs:
     needs:
       - build-tauri
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
       - run: npm ci
